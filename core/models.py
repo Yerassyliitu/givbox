@@ -199,9 +199,9 @@ class ModelPackage(models.Model):
 
         super().save(*args, **kwargs)
 
-        if self.paymentStatus == 'paid':
-            self.package.paymentStatus = utils.CRYPTO_PAID
-            self.package.save()
+        # if self.paymentStatus == 'paid':
+        #     self.package.paymentStatus = utils.CRYPTO_PAID
+        #     self.package.save()
 
     def get_status_display(self):
         return dict(utils.PAYMENT_STATUS_CHOICES).get(self.payment_status, self.payment_status)
