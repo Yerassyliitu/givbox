@@ -186,16 +186,20 @@ class ModelPackage(models.Model):
 
     def save(self, *args, **kwargs):
         if self.pk is not None:
-            original = CryptoPay.objects.get(pk=self.pk)
-            if original.payment_status != self.payment_status:
-                self.create_status_notification()
+            try:
+                original = CryptoPay.objects.get(pk=self.pk)
+                if original.payment_status != self.paymentStatus:
+                    self.create_status_notification()
 
-                if self.payment_status == 'paid':
-                    self.is_paid = True
+                if self.paymentStatus == 'paid':
+                    original.is_paid = True
+            except CryptoPay.DoesNotExist:
+                pass
+            
 
         super().save(*args, **kwargs)
 
-        if self.payment_status == 'paid':
+        if self.paymentStatus == 'paid':
             self.package.paymentStatus = utils.CRYPTO_PAID
             self.package.save()
 
