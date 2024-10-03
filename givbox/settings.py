@@ -103,7 +103,7 @@ WSGI_APPLICATION = 'givbox.wsgi.application'
 #    }
 #}
 
-postgres = os.getenv('POSTGRES_DB', False)
+postgres = bool(os.getenv('POSTGRES_DB', False))
 
 if postgres:
     DATABASES = {

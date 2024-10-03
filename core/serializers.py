@@ -180,7 +180,8 @@ class RequestSerializerGet(serializers.ModelSerializer):
         fields = ('id', 'senderName', 'senderPhone', 'receiverName', 'receiverPhone', 'serviceName', 'fromCountry',
                   'fromCity', 'toCountry', 'toCity', 'packageType', 'packageData', 'dateSending',
                   'phone', 'telegram', 'comment', 'client', 'weight', 'archive', 'trackNumbers', 'height', 'width',
-                  'cost', 'length', 'dateCreated', 'extraServices', 'premium', 'address', 'package', 'file')
+                  'cost', 'length', 'dateCreated', 'extraServices', 'premium', 'address', 'package', 'file',
+                  'is_private', 'private_item_description', 'product_link')
         read_only_fields = ('id', 'dateCreated')
 
 
@@ -191,7 +192,8 @@ class RequestSerializer(serializers.ModelSerializer):
         fields = ('id', 'senderName', 'senderPhone', 'receiverName', 'receiverPhone', 'serviceName', 'fromCountry',
                   'fromCity', 'toCountry', 'toCity', 'packageType', 'packageData', 'dateSending',
                   'phone', 'telegram', 'comment', 'client', 'weight', 'archive', 'trackNumbers', 'height', 'width',
-                  'cost', 'length', 'dateCreated', 'extraServices', 'premium', 'address', 'package', 'file')
+                  'cost', 'length', 'dateCreated', 'extraServices', 'premium', 'address', 'package', 'file', 
+                  'is_private', 'private_item_description', 'product_link')
         read_only_fields = ('id', 'dateCreated')
 
     def create(self, validated_data):

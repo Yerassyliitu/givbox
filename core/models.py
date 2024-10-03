@@ -297,6 +297,9 @@ class ModelRequests(models.Model):
     extraServices = models.ManyToManyField(ModelExtraService, verbose_name='Экстра сервисы', blank=True)
     premium = models.BooleanField('Премиум', default=False)
     address = models.ForeignKey(ModelAddresses, models.SET_NULL, null=True, blank=True, verbose_name='Адрес')
+    is_private = models.BooleanField('Приватный', default=False)
+    private_item_description = models.TextField('Описание приватного товара', blank=True, null=True)
+    product_link = models.TextField('Ссылка на товар', blank=True, null=True)
 
     def __str__(self):
         return str(self.id)
