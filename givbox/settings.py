@@ -2,6 +2,7 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -14,7 +15,7 @@ SECRET_KEY = 'django-insecure-$_r6_d9rakq&kjzr(^oon(j6xobn826(oncrti-vbdud6fks@e
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+load_dotenv()
 ALLOWED_HOSTS = ['*']
 
 
@@ -102,23 +103,29 @@ WSGI_APPLICATION = 'givbox.wsgi.application'
 #    }
 #}
 
-DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.sqlite3',
-       'NAME': BASE_DIR / 'db.sqlite3',
-   }
-}
+postgres = os.getenv('POSTGRES_DB', False)
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'givbox',
-#         'USER': 'timur',
-#         'PASSWORD': 'timoxa',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
+if postgres:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'railway',
+            'USER': 'postgres',
+            'PASSWORD': 'rxYmFzCBCGMmzmGPjajkxZqZJUDrQoTM',
+            'HOST': 'postgres.railway.internal',
+            'PORT': '5432',
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+    
+
+
 
 
 # Password validation
